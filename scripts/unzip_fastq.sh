@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 # utilize fasterq-dump for .sra extraction into .fq
 
 while read -r run; do
