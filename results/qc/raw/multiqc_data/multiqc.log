@@ -1,0 +1,28 @@
+[2026-08-17 22:12:13,935] multiqc                                            [DEBUG  ]  This is MultiQC v1.21
+[2026-08-17 22:12:13,936] multiqc                                            [DEBUG  ]  Command used: /usr/bin/multiqc --outdir results/qc/raw results/qc/raw
+[2026-08-17 22:12:14,527] multiqc                                            [WARNING]  MultiQC Version v1.35 now available!
+[2026-08-17 22:12:14,527] multiqc                                            [DEBUG  ]  Latest MultiQC version is v1.35, released 2026-05-13
+[2026-08-17 22:12:14,528] multiqc                                            [DEBUG  ]  Working dir : /home/paras/Documents/code/omics/rnaseq/mirna/GSE303374_sperm_mirna
+[2026-08-17 22:12:14,528] multiqc                                            [DEBUG  ]  Template    : default
+[2026-08-17 22:12:14,528] multiqc                                            [DEBUG  ]  Running Python 3.13.7 (main, Mar  3 2026, 12:19:54) [GCC 15.2.0]
+[2026-08-17 22:12:14,528] multiqc                                            [DEBUG  ]  Analysing modules: custom_content, ccs, ngsderive, purple, conpair, isoseq, lima, peddy, somalier, methylqa, mosdepth, phantompeakqualtools, qualimap, bamdst, preseq, hifiasm, quast, qorts, rna_seqc, rockhopper, rsem, rseqc, busco, bustools, goleft_indexcov, gffcompare, disambiguate, supernova, deeptools, sargasso, verifybamid, mirtrace, happy, mirtop, sambamba, gopeaks, homer, hops, macs2, theta2, snpeff, gatk, htseq, bcftools, featureCounts, fgbio, dragen, dragen_fastqc, dedup, pbmarkdup, damageprofiler, mapdamage, biobambam2, jcvi, mtnucratio, picard, vep, bakta, prokka, qc3C, nanostat, samblaster, samtools, sexdeterrmine, seqera_cli, eigenstratdatabasetools, bamtools, jellyfish, vcftools, longranger, stacks, varscan2, snippy, umitools, truvari, megahit, bbmap, bismark, biscuit, diamond, hicexplorer, hicup, hicpro, salmon, kallisto, slamdunk, star, hisat2, tophat, bowtie2, bowtie1, cellranger, snpsplit, odgi, pangolin, nextclade, freyja, humid, kat, leehom, librarian, nonpareil, adapterRemoval, bbduk, clipandmerge, cutadapt, flexbar, sourmash, kaiju, bracken, kraken, malt, motus, trimmomatic, sickle, skewer, sortmerna, biobloomtools, fastq_screen, afterqc, fastp, fastqc, filtlong, prinseqplusplus, pychopper, porechop, pycoqc, minionqc, anglerfish, multivcfanalyzer, clusterflow, checkqc, bcl2fastq, bclconvert, interop, ivar, flash, seqyclean, optitype, whatshap, spaceranger, xenome, xengsort, metaphlan, seqwho
+[2026-08-17 22:12:14,528] multiqc                                            [DEBUG  ]  Using temporary directory for creating report: /tmp/tmp5qy01l0n
+[2026-08-17 22:12:14,528] multiqc                                            [INFO   ]  Search path : /home/paras/Documents/code/omics/rnaseq/mirna/GSE303374_sperm_mirna/results/qc/raw
+[2026-08-17 22:12:14,860] multiqc                                            [DEBUG  ]  Summary of files that were skipped by the search: [skipped_module_specific_max_filesize: 351] // [skipped_no_match: 27]
+[2026-08-17 22:12:14,873] multiqc                                            [DEBUG  ]  No samples found: custom_content
+[2026-08-17 22:12:15,938] multiqc.modules.fastqc.fastqc                      [INFO   ]  Found 27 reports
+[2026-08-17 22:12:15,938] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_fastqc.txt
+[2026-08-17 22:12:16,014] multiqc.plots.plotly.heatmap                       [DEBUG  ]  Resizing from 495x702 to fit the maximum size 900x500
+[2026-08-17 22:12:16,014] multiqc.plots.plotly.heatmap                       [DEBUG  ]  Heatmap size: 900x500, px per element: 81.82x18.52
+[2026-08-17 22:12:16,017] multiqc.utils.software_versions                    [DEBUG  ]  Reading software versions from config.software_versions
+[2026-08-17 22:12:16,018] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_software_versions.txt
+[2026-08-17 22:12:16,035] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_general_stats.txt
+[2026-08-17 22:12:16,035] multiqc                                            [DEBUG  ]  Compressing plot data
+[2026-08-17 22:12:16,263] multiqc.utils.util_functions                       [DEBUG  ]  Wrote data file multiqc_data.json
+[2026-08-17 22:12:16,263] multiqc                                            [INFO   ]  Report      : results/qc/raw/multiqc_report.html
+[2026-08-17 22:12:16,263] multiqc                                            [INFO   ]  Data        : results/qc/raw/multiqc_data
+[2026-08-17 22:12:16,263] multiqc                                            [DEBUG  ]  Moving data file from '/tmp/tmp5qy01l0n/multiqc_data' to '/home/paras/Documents/code/omics/rnaseq/mirna/GSE303374_sperm_mirna/results/qc/raw/multiqc_data'
+[2026-08-17 22:12:16,265] multiqc                                            [DEBUG  ]  Full report path: /home/paras/Documents/code/omics/rnaseq/mirna/GSE303374_sperm_mirna/results/qc/raw/multiqc_report.html
+[2026-08-17 22:12:16,295] multiqc                                            [ERROR  ]  Could not include file 'assets/js/packages/jszip.min.js': [Errno 2] No such file or directory: '/tmp/tmp5qy01l0n/assets/js/packages/jszip.min.js'
+[2026-08-17 22:12:16,295] multiqc                                            [ERROR  ]  Could not include file 'assets/js/packages/plotly-2.27.0.min.js': [Errno 2] No such file or directory: '/tmp/tmp5qy01l0n/assets/js/packages/plotly-2.27.0.min.js'
+[2026-08-17 22:12:16,328] multiqc                                            [INFO   ]  MultiQC complete

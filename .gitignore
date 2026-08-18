@@ -18,3 +18,8 @@ data/
 *.sra
 results/intermediate/
 
+# reference genome files
+references/
+
+# alignment results
+results/alignment/

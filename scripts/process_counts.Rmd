@@ -1,0 +1,20 @@
+---
+title: "Process Counts"
+format: html
+---
+
+Here is my initial data import process:
+
+```{r}
+file_path <- "/home/paras/Documents/code/omics/rnaseq/mirna/GSE303374_sperm_mirna/results/counts/mirna_count_matrix.tsv"
+
+counts <- read.table(file_path, header = TRUE, sep = "\t", row.names = 1)
+
+
+```
+
+
+```
+
+```
+
