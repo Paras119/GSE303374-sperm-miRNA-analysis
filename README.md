@@ -13,3 +13,10 @@ Procedure -
     d. extracted files were tested and checked for integrity using gzip command.
 
 2. 
+
+
+
+
+Results - 
+1. Alcohol dosage exposure differences in WT genotype
+    a. Unsupervised PCA and correlation analysis on 12 samples - 4 control, 4 low, 2 medium and 2 high alcohol dosage exposures did not demonstrate a clear segregation of WT sperm miRNAs profiles. Most samples were strongly correlated, although one sample did show a comparative lower correlation compared to the remaining samples.

@@ -6,15 +6,128 @@ format: html
 Here is my initial data import process:
 
 ```{r}
-file_path <- "/home/paras/Documents/code/omics/rnaseq/mirna/GSE303374_sperm_mirna/results/counts/mirna_count_matrix.tsv"
 
-counts <- read.table(file_path, header = TRUE, sep = "\t", row.names = 1)
+counts <- read.delim(
+  "/home/paras/Documents/code/omics/rnaseq/mirna/GSE303374_sperm_mirna/results/counts/mirna_count_matrix.tsv",
+  row.names = 1,
+  check.names = FALSE
+)
 
-
+dim(counts)
 ```
 
 
+```{r}
+stopifnot(
+  ncol(counts) == 28,
+  !anyNA(counts),
+  all(counts >= 0),
+  all(counts == floor(counts)),
+  !anyDuplicated(rownames(counts)),
+  !anyDuplicated(colnames(counts))
+)
+
+summary(colSums(counts))
 ```
+
+```{r}
+counts_nonzero <- counts[rowSums(counts) > 0, ]
+
+dim(counts_nonzero)
+```
+
+```{r}
+metadata_raw <- read.csv(
+  "/home/paras/Documents/code/omics/rnaseq/mirna/GSE303374_sperm_mirna/metadata/SraRunTable.csv",
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
+
+metadata <- data.frame(
+  sample_id = metadata_raw$Run,
+  gsm = metadata_raw$'Sample Name',
+  genotype = metadata_raw$genotype,
+  treatment = metadata_raw$treatment,
+  stringsAsFactors = FALSE
+)
+rownames(metadata) <- metadata$sample_id
+
+metadata <- metadata[colnames(counts), , drop = FALSE]
+
+stopifnot(
+  identical(rownames(metadata), colnames(counts)),
+  !anyNA(metadata$treatment),
+  nrow(metadata) == 28
+)
+table(metadata$genotype, metadata$treatment)
+```
+
+
+```{r}
+wt_metadata <- metadata[metadata$genotype == "WT", , drop = FALSE]
+wt_counts <- counts[, rownames(wt_metadata), drop = FALSE]
+
+wt_metadata$dose <- NA_character_
+wt_metadata$dose[grepl("^Control", wt_metadata$treatment)] <- "control"
+wt_metadata$dose[grepl("^Low",     wt_metadata$treatment)] <- "low"
+wt_metadata$dose[grepl("^Medium",  wt_metadata$treatment)] <- "medium"
+wt_metadata$dose[grepl("^High",    wt_metadata$treatment)] <- "high"
+
+wt_metadata$dose <- factor(
+  wt_metadata$dose,
+  levels = c("control", "low", "medium", "high")
+)
+
+table(wt_metadata$dose)
+```
+
+```{r}
+library(DESeq2)
+
+keep <- rowSums(wt_counts >= 10) >= 2
+
+dds <- DESeqDataSetFromMatrix(
+  countData = wt_counts[keep, ],
+  colData = wt_metadata,
+  design = ~ dose
+)
+
+dds <- DESeq(dds)
+```
+
+```{r}
+vst <- assay(varianceStabilizingTransformation(dds))
+res_low <- results(dds, contrast = c("dose", "low", "control"))
+res_medium <- results(dds, contrast = c("dose", "medium", "control"))
+res_high <- results(dds, contrast = c("dose", "high", "control"))
+```
+
+```{r}
+library(PCAtools)
+
+p <- pca(vst, metadata = wt_metadata, removeVar = 0.1)
+
+p_pca <- biplot(
+  p,
+  colby = "dose",
+  lab = rownames(wt_metadata),
+  legendPosition = "right",
+  title = "PCA of WT sperm miRNA expression"
+)
+
+print(p_pca)
 
 ```
 
+```{r}
+library(pheatmap)
+
+cor_mat <- cor(vst, method = "pearson")
+annotation_col <- data.frame(dose = wt_metadata$dose)
+rownames(annotation_col) <- rownames(wt_metadata)
+pheatmap(
+  cor_mat,
+  annotation_col = annotation_col,
+  main = "Pearson correlation of WT sperm miRNA expression"
+)
+```
